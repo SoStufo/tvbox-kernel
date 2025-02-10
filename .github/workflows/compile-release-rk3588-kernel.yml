@@ -65,7 +65,7 @@ on:
       kernel_sign:
         description: "Set the kernel custom signature"
         required: false
-        default: "-rk3588-ophub"
+        default: "-rk3588-sostufo"
         type: choice
         options:
           - -rk3588-ophub
@@ -79,6 +79,7 @@ on:
           - -autumn-harvesting
           - -winter-storing
           - -yourname
+          - -rk3588-sostufo
       kernel_config:
         description: "Set the path of kernel .config"
         required: false
@@ -112,7 +113,7 @@ jobs:
           sudo rm -f /swapfile /mnt/swapfile
           sudo -E apt-get -y update
           sudo -E apt-get -y purge azure-cli ghc* zulu* llvm* firefox google* dotnet* powershell openjdk* mongodb* moby* || true
-          sudo -E apt-get -y install $(curl -fsSL https://tinyurl.com/ubuntu2204-build-armbian)
+          sudo -E apt-get -y install $(curl -fsSL https://raw.githubusercontent.com/SoStufo/tvbox-armbian/refs/heads/main/compile-kernel/tools/script/ubuntu2204-build-armbian-depends)
           sudo -E systemctl daemon-reload
           #sudo -E apt-get -y full-upgrade
           sudo -E apt-get -y autoremove --purge
@@ -147,12 +148,12 @@ jobs:
         run: |
           df -hT ${PWD}
           mkdir -p /builder/{kernel,output}
-          ln -sf /builder/kernel /home/runner/work/_actions/ophub/amlogic-s9xxx-armbian/main/compile-kernel/kernel
-          ln -sf /builder/output /home/runner/work/_actions/ophub/amlogic-s9xxx-armbian/main/compile-kernel/output
+          ln -sf /builder/kernel /home/runner/work/_actions/SoStufo/tvbox-armbian/main/compile-kernel/kernel
+          ln -sf /builder/output /home/runner/work/_actions/SoStufo/tvbox-armbian/main/compile-kernel/output
           echo "status=success" >> ${GITHUB_OUTPUT}
 
       - name: Compile the kernel [ ${{ inputs.kernel_version }} ]
-        uses: ophub/amlogic-s9xxx-armbian@main
+        uses: SoStufo/tvbox-armbian@main
         if: ${{ steps.mapped.outputs.status }} == 'success' && !cancelled()
         with:
           build_target: kernel
