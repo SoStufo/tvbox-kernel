@@ -13,11 +13,12 @@ on:
       kernel_source:
         description: "Select the kernel source"
         required: false
-        default: "codesnas/linux-h6-6.6.y"
+        default: "SoStufo/linux-h6-6.6.y"
         type: choice
         options:
           - 13584452567
           - codesnas/linux-h6-6.6.y
+          - SoStufo/linux-h6-6.6.y
       kernel_version:
         description: "Select kernel version"
         required: false
