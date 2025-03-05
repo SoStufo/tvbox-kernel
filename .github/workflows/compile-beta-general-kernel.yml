@@ -13,10 +13,11 @@ on:
       kernel_source:
         description: "Select the kernel source"
         required: false
-        default: "unifreq"
+        default: "SoStufo"
         type: choice
         options:
           - unifreq
+          - SoStufo
       kernel_version:
         description: "Select kernel version"
         required: false
