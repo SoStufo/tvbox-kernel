@@ -183,7 +183,7 @@ jobs:
         run: |
           # Create a docker mapping directory
           mkdir -p /builder/compile-kernel/{kernel,output}
-          ln -sf /builder/compile-kernel/kernel /home/runner/work/_actions/SoStufo/tvbox-armbian/compile-kernel/kernel
+          ln -sf /builder/compile-kernel/kernel /home/runner/work/_actions/SoStufo/tvbox-armbian/main/compile-kernel/kernel
           ln -sf /builder/compile-kernel/output /home/runner/work/_actions/SoStufo/tvbox-armbian/main/compile-kernel/output
 
           # Pull the Armbian Docker image
